@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dpdk on Blog</title>
-    <link>https://krsacme.github.io/krsacme/tags/dpdk/index.xml</link>
+    <link>https://krsacme.github.io/blog/tags/dpdk/index.xml</link>
     <description>Recent content in Dpdk on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>krsacme@gmail.com (Saravanan KR)</managingEditor>
     <webMaster>krsacme@gmail.com (Saravanan KR)</webMaster>
-    <atom:link href="https://krsacme.github.io/krsacme/tags/dpdk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://krsacme.github.io/blog/tags/dpdk/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>DPDK - Assigning CPUs for Poll Mode Driver (PMD)</title>
-      <link>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</link>
+      <link>https://krsacme.github.io/blog/post/dpdk-pmd-cpu-list/</link>
       <pubDate>Tue, 20 Dec 2016 17:05:52 +0530</pubDate>
       <author>krsacme@gmail.com (Saravanan KR)</author>
-      <guid>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</guid>
+      <guid>https://krsacme.github.io/blog/post/dpdk-pmd-cpu-list/</guid>
       <description>
 
 &lt;p&gt;OVS-DPDK is a critical requirement in the NFV world with OpenStack. TripleO
@@ -53,7 +53,7 @@ give the NUMA node associated with an Interface&lt;/li&gt;
 
 &lt;h4 id=&#34;sample-configuration&#34;&gt;Sample Configuration&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://krsacme.github.io/krsacme/numa_mapping_for_dpdk_in_tripleo.jpg&#34; alt=&#34;NUMA Node Mapping&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://krsacme.github.io/blog/numa_mapping_for_dpdk_in_tripleo.jpg&#34; alt=&#34;NUMA Node Mapping&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For better explanation, let us consider a baremetal machine with below specification.
   * A machine with 2 NUMA nodes

@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</loc>
+    <loc>https://krsacme.github.io/blog/post/dpdk-pmd-cpu-list/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/about/</loc>
+    <loc>https://krsacme.github.io/blog/about/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/</loc>
-    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://krsacme.github.io/krsacme/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://krsacme.github.io/krsacme/tags/dpdk/</loc>
+    <loc>https://krsacme.github.io/blog/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/categories/dpdk/</loc>
+    <loc>https://krsacme.github.io/blog/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/blog/tags/dpdk/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/post/</loc>
+    <loc>https://krsacme.github.io/blog/categories/dpdk/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://krsacme.github.io/krsacme/tags/tripleo/</loc>
+    <loc>https://krsacme.github.io/blog/post/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://krsacme.github.io/krsacme/categories/tripleo/</loc>
+    <loc>https://krsacme.github.io/blog/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/blog/tags/tripleo/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/blog/categories/tripleo/</loc>
     <lastmod>2016-12-20T17:05:52+05:30</lastmod>
     <priority>0</priority>
   </url>
