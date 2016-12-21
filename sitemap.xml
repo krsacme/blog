@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/about/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/tags/dpdk/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/categories/dpdk/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/post/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/tags/tripleo/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://krsacme.github.io/krsacme/categories/tripleo/</loc>
+    <lastmod>2016-12-20T17:05:52+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

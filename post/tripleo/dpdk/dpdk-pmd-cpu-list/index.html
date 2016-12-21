@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>DPDK - Assigning CPUs for Poll Mode Driver (PMD)  &middot; Blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="TripleO, DPDK, ">
+
+
+<meta property="og:title" content="DPDK - Assigning CPUs for Poll Mode Driver (PMD)  &middot; Blog ">
+<meta property="og:site_name" content="Blog"/>
+<meta property="og:url" content="https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2016-12-20T17:05:52&#43;05:30" />
+<meta property="og:article:modified_time" content="2016-12-20T17:05:52&#43;05:30" />
+
+  
+    
+<meta property="og:article:tag" content="TripleO">
+    
+<meta property="og:article:tag" content="DPDK">
+    
+  
+
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "DPDK - Assigning CPUs for Poll Mode Driver (PMD)",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2016-12-20",
+    "description": "",
+    "wordCount":  279 
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://krsacme.github.io/touch-icon-144-precomposed.png">
+<link href="https://krsacme.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.18" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://krsacme.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://krsacme.github.io/css/style.css">
+<link rel="stylesheet" href="https://krsacme.github.io/css/highlight/default.css">
+
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar right">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://krsacme.github.io/krsacme/">
+  krsacme
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  blog on my technical learnings
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+<a class="homelink" href="https://krsacme.github.io/krsacme/">Home</a>
+
+
+  
+<a href="https://krsacme.github.io/about">About</a>
+
+<a href="https://krsacme.github.io/post" title="Show list of posts">Posts</a>
+
+<a href="https://krsacme.github.io/tags" title="Show list of tags">Tags</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+<a id="contact-link-email" class="contact_link" href="mailto:krsacme@gmail.com">
+  <span class="fa fa-envelope-square"></span><span>email</span></a>
+
+
+
+<a id="contact-link-github" class="contact_link" href="https://github.com/krsacme/blog-site">
+  <span class="fa fa-github-square"></span><span>github</span></a>
+
+
+
+
+
+<a id="contact-link-linkedin" class="contact_link" href="https://www.linkedin.com/in/krsacme">
+  <span class="fa fa-linkedin-square"></span><span>linkedin</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>DPDK - Assigning CPUs for Poll Mode Driver (PMD)
+</h1>
+
+  <div class="metas">
+<time datetime="2016-12-20">20 Dec, 2016</time>
+
+
+  
+  &middot; Read in about 2 min
+  &middot; (279 Words)
+  <br>
+  
+<a class="label" href="https://krsacme.github.io/tags/tripleo">TripleO</a>
+
+<a class="label" href="https://krsacme.github.io/tags/dpdk">DPDK</a>
+
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  
+
+<p>OVS-DPDK is a critical requirement in the NFV world with OpenStack. TripleO
+has integrated the deployment of OVS-DPDK with the newton release, till then
+it used to be a manual step post deployment. There are a list of parameter
+which has to be provided for the deployment with OVS-DPDK. One such parameter
+is <em>NeutronDpdkCoreList</em>. This blog details the factors to be considered in
+order to decide the value for this parameter.</p>
+
+<h3 id="cpu-list-for-pmd">CPU List for PMD</h3>
+
+<p><em>NeutronDpdkCoreList</em> parameter configures the list of CPUs to be used by the
+Poll Mode Drivers. Following criteria should be considered to deliver an
+optimal performance with OVS-DPDK:</p>
+
+<ul>
+<li>CPUs should be associated with NUMA node of the DPDK interface</li>
+<li>CPU siblings (in case of Hyper-threading) should be added to the together</li>
+<li>CPU 0 should always be left for the host process</li>
+<li>CPUs assigned to PMD should be isolated so that the host process does
+not use those</li>
+<li>CPUs assigned to PMD should be exclued from nova scheduling using
+<em>NovaVcpuPinset</em></li>
+</ul>
+
+<h4 id="fetching-the-information">Fetching the Information</h4>
+
+<ul>
+<li><code>lscpu</code> command will give list of CPUs associated with the NUMA node</li>
+<li><code>cat /sys/devices/system/cpu/&lt;cpu&gt;/topology/thread_siblings_list</code>
+command will give the siblings of a CPU</li>
+<li><code>cat /sys/class/net/&lt;interface&gt;/device/numa_node</code> command will
+give the NUMA node associated with an Interface</li>
+</ul>
+
+<h4 id="sample-configuration">Sample Configuration</h4>
+
+<p><img src="/numa_mapping_for_dpdk_in_tripleo.jpg" alt="NUMA Node Mapping" /></p>
+
+<p>For better explanation, let us consider a baremetal machine with below specification.
+  * A machine with 2 NUMA nodes
+  * Each NUMA node has 4 cores and a 1 NIC
+  * Hyper-threading value as 2, so each core is running 2 threads (siblings)
+  * Each NUMA node eventually contains 8 CPUs</p>
+
+<p>To configure NIC1 as DPDK, following should be configuration</p>
+
+<pre><code>NeutronDpdkCoreList: &quot;'2,3'&quot;
+NeutronDpdkSocketMemory: &quot;'1024'&quot;
+</code></pre>
+
+<p>To configure NIC2 as DPDK, following should be configuration</p>
+
+<pre><code>NeutronDpdkCoreList: &quot;'8,9'&quot;
+NeutronDpdkSocketMemory: &quot;'0,1024'&quot;
+</code></pre>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+
+
+<script src="https://krsacme.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tripleo on Blog</title>
+    <link>https://krsacme.github.io/krsacme/categories/tripleo/index.xml</link>
+    <description>Recent content in Tripleo on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>krsacme@gmail.com (Saravanan KR)</managingEditor>
+    <webMaster>krsacme@gmail.com (Saravanan KR)</webMaster>
+    <atom:link href="https://krsacme.github.io/krsacme/categories/tripleo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>DPDK - Assigning CPUs for Poll Mode Driver (PMD)</title>
+      <link>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</link>
+      <pubDate>Tue, 20 Dec 2016 17:05:52 +0530</pubDate>
+      <author>krsacme@gmail.com (Saravanan KR)</author>
+      <guid>https://krsacme.github.io/krsacme/post/tripleo/dpdk/dpdk-pmd-cpu-list/</guid>
+      <description>
+
+&lt;p&gt;OVS-DPDK is a critical requirement in the NFV world with OpenStack. TripleO
+has integrated the deployment of OVS-DPDK with the newton release, till then
+it used to be a manual step post deployment. There are a list of parameter
+which has to be provided for the deployment with OVS-DPDK. One such parameter
+is &lt;em&gt;NeutronDpdkCoreList&lt;/em&gt;. This blog details the factors to be considered in
+order to decide the value for this parameter.&lt;/p&gt;
+
+&lt;h3 id=&#34;cpu-list-for-pmd&#34;&gt;CPU List for PMD&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;NeutronDpdkCoreList&lt;/em&gt; parameter configures the list of CPUs to be used by the
+Poll Mode Drivers. Following criteria should be considered to deliver an
+optimal performance with OVS-DPDK:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CPUs should be associated with NUMA node of the DPDK interface&lt;/li&gt;
+&lt;li&gt;CPU siblings (in case of Hyper-threading) should be added to the together&lt;/li&gt;
+&lt;li&gt;CPU 0 should always be left for the host process&lt;/li&gt;
+&lt;li&gt;CPUs assigned to PMD should be isolated so that the host process does
+not use those&lt;/li&gt;
+&lt;li&gt;CPUs assigned to PMD should be exclued from nova scheduling using
+&lt;em&gt;NovaVcpuPinset&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;fetching-the-information&#34;&gt;Fetching the Information&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lscpu&lt;/code&gt; command will give list of CPUs associated with the NUMA node&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat /sys/devices/system/cpu/&amp;lt;cpu&amp;gt;/topology/thread_siblings_list&lt;/code&gt;
+command will give the siblings of a CPU&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat /sys/class/net/&amp;lt;interface&amp;gt;/device/numa_node&lt;/code&gt; command will
+give the NUMA node associated with an Interface&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;sample-configuration&#34;&gt;Sample Configuration&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://krsacme.github.io/krsacme/numa_mapping_for_dpdk_in_tripleo.jpg&#34; alt=&#34;NUMA Node Mapping&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For better explanation, let us consider a baremetal machine with below specification.
+  * A machine with 2 NUMA nodes
+  * Each NUMA node has 4 cores and a 1 NIC
+  * Hyper-threading value as 2, so each core is running 2 threads (siblings)
+  * Each NUMA node eventually contains 8 CPUs&lt;/p&gt;
+
+&lt;p&gt;To configure NIC1 as DPDK, following should be configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NeutronDpdkCoreList: &amp;quot;&#39;2,3&#39;&amp;quot;
+NeutronDpdkSocketMemory: &amp;quot;&#39;1024&#39;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To configure NIC2 as DPDK, following should be configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NeutronDpdkCoreList: &amp;quot;&#39;8,9&#39;&amp;quot;
+NeutronDpdkSocketMemory: &amp;quot;&#39;0,1024&#39;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
